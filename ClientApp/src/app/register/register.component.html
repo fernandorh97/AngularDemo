@@ -1,0 +1,23 @@
+<div class="register">
+    <div *ngIf="!registered">
+      <span>Register a new account</span>
+      <form [formGroup] = "formdata" (ngSubmit) = "onClickSubmit(formdata.value)" >
+        <input type = "text" name = "emailid"
+        placeholder = "Email" formControlName = "emailid">
+        <br/>
+        <div *ngIf="submitted && formdata.controls.emailid.errors">
+          <em *ngIf="formdata.controls.emailid.errors.required">Email required</em>
+          <em *ngIf="formdata.controls.emailid.errors.email">Invalid email</em>
+        </div>
+        <input type = "password" name = "passwd"
+        placeholder = "Password" formControlName = "passwd">
+        <br/>
+        <div *ngIf="submitted && formdata.controls.passwd.errors">
+          <em *ngIf="formdata.controls.passwd.errors.required">Password required</em>
+          <em *ngIf="formdata.controls.passwd.errors.minlength">Minimum password length: 5</em>
+        </div>
+        <button type="submit" mat-flat-button color="primary">Sign Up</button>
+      </form>
+    </div>
+    <span *ngIf="registered">You have been registered.</span>
+</div>
